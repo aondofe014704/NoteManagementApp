@@ -32,12 +32,11 @@ public class UserServiceImpl implements UserService{
         return response;
     }
     private void validateExistingEmail(String email) {
-        boolean existingEmail = userRepository.existingEmail(email);
-        if (existingEmail) {
+        boolean existsByEmail = userRepository.existsByEmail(email);
+        if (existsByEmail) {
             throw new EmailAlreadyExistException("Email already exists.");
         }
     }
-
     @Override
     public List<User> getAllUsers() {
         return userRepository.findAll();
